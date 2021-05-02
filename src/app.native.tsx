@@ -16,25 +16,28 @@ const html = `
   </style>
 </head>
 <body>
-	<div id="layer" style="width:100%; height: 100%; border:2px solid #f00;"></div>
+	<div id="layer" style="width:100%; min-height: 100%; border:2px solid #f00;"></div>
 	<script type="text/javascript">
     function callback() {
 			var element_layer = document.getElementById('layer');
+			element_layer.innerHTML = "";
       new daum.Postcode({
         ...window.options,
         oncomplete: function(data) {
           window.ReactNativeWebView.postMessage(JSON.stringify(data));
         },
-        // onresize: function(size) {
-        //   document.getElementById('layer').style.height = size.height + 'px';
-        //   window.scrollTo(0, 0);
-        // },
+        onresize: function(size) {
+          document.getElementById('layer').style.height = size.height + 'px';
+        },
         onclose: function(state) {
           callback();
         },
         width : '100%',
         height: '100%',
       }).embed(element_layer);
+      document.querySelector('#layer iframe').onload = () => {
+         window.scrollTo(0, 0);        
+      }
     }
 		function initOnReady(options) {
     	window.options = options;
