@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import WebView from 'react-native-webview';
 import { PostcodeProps } from './types';
-import { Linking } from 'react-native';
+import { Linking, View } from 'react-native';
 
 const html = `
 <!DOCTYPE html>
@@ -13,11 +13,10 @@ const html = `
 	<style> 
 	  * { box-sizing: border-box }
 	  html, body { width: 100%; height: 100%; margin:0px; padding: 0px; background-color: #ececec; } 
-	  #layer iframe { overflow-y: auto !important; }
   </style>
 </head>
 <body>
-	<div id="layer" style="width:100%; height: 100%; border:2px solid #f00; overflow-y: auto;"></div>
+	<div id="layer" style="width:100%; min-height: 100%; border:2px solid #f00;"></div>
 	<script type="text/javascript">
     function callback() {
 			var element_layer = document.getElementById('layer');
@@ -26,9 +25,9 @@ const html = `
         oncomplete: function(data) {
           window.ReactNativeWebView.postMessage(JSON.stringify(data));
         },
-        // onresize: function(size) {
-        //   document.getElementById('layer').style.height = size.height + 'px';
-        // },
+        onresize: function(size) {
+          document.getElementById('layer').style.height = size.height + 'px';
+        },
         onclose: function(state) {
           callback();
         },
@@ -64,30 +63,31 @@ const Postcode: React.FC<PostcodeProps> = (props: PostcodeProps) => {
   );
 
   return (
-    <WebView
-      mixedContentMode={'compatibility'}
-      androidLayerType="hardware"
-      renderToHardwareTextureAndroid={true}
-      useWebKit={true}
-      {...otherProps}
-      source={{ html, baseUrl: 'https://postcode.map.daum.net' }}
-      style={style}
-      onMessage={onMessage}
-      injectedJavaScript={injectedJavaScript}
-      onShouldStartLoadWithRequest={request => {
-        const isPostcode =
-          !request.url?.startsWith('https://postcode.map.daum.net/guide') &&
-          (!request.url?.startsWith('http') ||
-            request.url?.startsWith('https://postcode.map.daum.net') ||
-            request.url?.startsWith('http://postcode.map.daum.net'));
-        if (!isPostcode) {
-          Linking.openURL(request.url);
-          return false;
-        } else {
-          return true;
-        }
-      }}
-    />
+    <View style={style}>
+      <WebView
+        mixedContentMode={'compatibility'}
+        androidLayerType="hardware"
+        renderToHardwareTextureAndroid={true}
+        useWebKit={true}
+        {...otherProps}
+        source={{ html, baseUrl: 'https://postcode.map.daum.net' }}
+        onMessage={onMessage}
+        injectedJavaScript={injectedJavaScript}
+        onShouldStartLoadWithRequest={request => {
+          const isPostcode =
+            !request.url?.startsWith('https://postcode.map.daum.net/guide') &&
+            (!request.url?.startsWith('http') ||
+              request.url?.startsWith('https://postcode.map.daum.net') ||
+              request.url?.startsWith('http://postcode.map.daum.net'));
+          if (!isPostcode) {
+            Linking.openURL(request.url);
+            return false;
+          } else {
+            return true;
+          }
+        }}
+      />
+    </View>
   );
 };
 
