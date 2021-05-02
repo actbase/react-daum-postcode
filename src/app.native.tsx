@@ -70,11 +70,11 @@ const Postcode: React.FC<PostcodeProps> = (props: PostcodeProps) => {
       onMessage={onMessage}
       injectedJavaScript={injectedJavaScript}
       onShouldStartLoadWithRequest={request => {
-        console.log(request.url);
         const isPostcode =
-          !request.url?.startsWith('http') ||
-          request.url?.startsWith('https://postcode.map.daum.net') ||
-          request.url?.startsWith('http://postcode.map.daum.net');
+          !request.url?.startsWith('https://postcode.map.daum.net/guide') &&
+          (!request.url?.startsWith('http') ||
+            request.url?.startsWith('https://postcode.map.daum.net') ||
+            request.url?.startsWith('http://postcode.map.daum.net'));
         if (!isPostcode) {
           Linking.openURL(request.url);
           return false;
