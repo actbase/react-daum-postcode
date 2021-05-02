@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import WebView from 'react-native-webview';
 import { PostcodeProps } from './types';
+import { Linking } from 'react-native';
 
 const html = `
 <!DOCTYPE html>
@@ -69,8 +70,16 @@ const Postcode: React.FC<PostcodeProps> = (props: PostcodeProps) => {
       onMessage={onMessage}
       injectedJavaScript={injectedJavaScript}
       onShouldStartLoadWithRequest={request => {
-        console.log(request.url);
-        return true;
+        const isPostcode =
+          !request.url?.startsWith('http') ||
+          request.url?.startsWith('https://postcode.map.daum.net') ||
+          request.url?.startsWith('http://postcode.map.daum.net');
+        if (!isPostcode) {
+          Linking.openURL(request.url);
+          return false;
+        } else {
+          return true;
+        }
       }}
     />
   );
