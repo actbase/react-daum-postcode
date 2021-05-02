@@ -79,21 +79,21 @@ const YourView = () => {
 
 ## 속성
 
-###`jsOptions?: JSOptions`
+### `jsOptions?: JSOptions`
 
 다음 우편번호찾기 속성을 넣습니다.
 
 아래 URL을 참고해주세요.<br />
 https://spi.maps.daum.net/postcode/guidessl#attributes
 
-###`onSelected: (data: OnCompleteParams) => void`
+### `onSelected: (data: OnCompleteParams) => void`
 
 다음우편번호찾기 결과 값을 수신합니다.
 
 oncomplete의 항목을 참고해주세요.<br />
 https://spi.maps.daum.net/postcode/guidessl#attributes
 
-###`style: ({width, height})`
+### `style: ({width, height})`
 
 width, height값을 별도로 줄 수 있습니다.
 
