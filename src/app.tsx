@@ -5,7 +5,7 @@ const getJSApi = (): Promise<any> => {
   return new Promise((resolve, reject) => {
     if (typeof window === 'undefined') reject({ message: 'unsupported platform' });
     // @ts-ignore
-    const postcodeSDK = global.daum?.postcode;
+    const postcodeSDK = global.daum?.Postcode;
     if (postcodeSDK) {
       resolve(postcodeSDK);
       return;
@@ -17,7 +17,7 @@ const getJSApi = (): Promise<any> => {
     const s = document.getElementsByTagName('script')[0];
     s?.parentNode?.insertBefore(jsapi, s);
     // @ts-ignore
-    jsapi.onload = () => resolve(global.daum.postcode);
+    jsapi.onload = () => resolve(global.daum.Postcode);
     jsapi.onabort = jsapi.onerror = reject;
   });
 };

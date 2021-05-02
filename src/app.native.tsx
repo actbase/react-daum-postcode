@@ -16,22 +16,20 @@ const html = `
 	<script type="text/javascript">
     function callback() {
 			var element_layer = document.getElementById('layer');
-			daum.postcode.load(function(){
-				new daum.Postcode({
-					...window.options,
-					oncomplete: function(data) {
-						window.ReactNativeWebView.postMessage(JSON.stringify(data));
-					},
-					onresize: function(size) {
-						document.getElementById('layer').style.height = size.height + 'px';
-					},
-					onclose: function(state) {
-						callback();
-					},
-					width : '100%',
-					height: '100%',
-				}).embed(element_layer);
-			});
+      new daum.Postcode({
+        ...window.options,
+        oncomplete: function(data) {
+          window.ReactNativeWebView.postMessage(JSON.stringify(data));
+        },
+        onresize: function(size) {
+          document.getElementById('layer').style.height = size.height + 'px';
+        },
+        onclose: function(state) {
+          callback();
+        },
+        width : '100%',
+        height: '100%',
+      }).embed(element_layer);
     }
 		function initOnReady(options) {
     	window.options = options;
