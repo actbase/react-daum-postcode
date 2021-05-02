@@ -24,19 +24,24 @@ const getJSApi = (): Promise<any> => {
 
 const Postcode: React.FC<PostcodeProps> = ({ onSelected, jsOptions, style }) => {
   const layer = React.useRef<HTMLDivElement>(null);
-  React.useEffect(() => {
-    const loadData = async () => {
-      const Postcode = await getJSApi();
-      if (Postcode) {
-        // @ts-ignore
-        new window.daum.Postcode({
-          ...jsOptions,
-          oncomplete: onSelected,
-        }).embed(layer.current);
-      }
-    };
-    loadData().catch(console.warn);
+
+  const loadData = React.useCallback(async () => {
+    const Postcode = await getJSApi();
+    if (Postcode) {
+      // @ts-ignore
+      new window.daum.Postcode({
+        ...jsOptions,
+        oncomplete: onSelected,
+        onclose: function() {
+          loadData();
+        },
+      }).embed(layer.current);
+    }
   }, []);
+
+  React.useEffect(() => {
+    loadData().catch(console.warn);
+  }, [loadData]);
   return <div ref={layer} style={style} />;
 };
 
