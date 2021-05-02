@@ -16,7 +16,7 @@ const html = `
   </style>
 </head>
 <body>
-	<div id="layer" style="width:100%; min-height: 100%; border:2px solid #f00;"></div>
+	<div id="layer" style="width:100%; height: 100%; border:2px solid #f00;"></div>
 	<script type="text/javascript">
     function callback() {
 			var element_layer = document.getElementById('layer');
@@ -25,10 +25,10 @@ const html = `
         oncomplete: function(data) {
           window.ReactNativeWebView.postMessage(JSON.stringify(data));
         },
-        onresize: function(size) {
-          document.getElementById('layer').style.height = size.height + 'px';
-          window.scrollTo(0, 0);
-        },
+        // onresize: function(size) {
+        //   document.getElementById('layer').style.height = size.height + 'px';
+        //   window.scrollTo(0, 0);
+        // },
         onclose: function(state) {
           callback();
         },
