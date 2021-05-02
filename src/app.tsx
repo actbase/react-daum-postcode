@@ -13,7 +13,7 @@ const getJSApi = (): Promise<any> => {
 
     const jsapi = document.createElement('script');
     jsapi.type = 'text/javascript';
-    jsapi.src = 'https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false';
+    jsapi.src = '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
     const s = document.getElementsByTagName('script')[0];
     s?.parentNode?.insertBefore(jsapi, s);
     // @ts-ignore

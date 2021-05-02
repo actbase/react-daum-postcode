@@ -36,7 +36,7 @@ const html = `
 		function initOnReady(options) {
     	window.options = options;
 			var s = document.createElement('script');
-			s.type = 'text/javascript'; s.src = 'https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false';
+			s.type = 'text/javascript'; s.src = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
 			s.onreadystatechange = callback; s.onload = callback;
 			var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
     }
