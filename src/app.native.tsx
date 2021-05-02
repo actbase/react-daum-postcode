@@ -60,13 +60,18 @@ const Postcode: React.FC<PostcodeProps> = (props: PostcodeProps) => {
 
   return (
     <WebView
+      mixedContentMode={'compatibility'}
+      androidLayerType="hardware"
+      renderToHardwareTextureAndroid={true}
+      useWebKit={true}
       {...otherProps}
       source={{ html, baseUrl: 'https://github.com' }}
       onMessage={onMessage}
       injectedJavaScript={injectedJavaScript}
-      mixedContentMode={'compatibility'}
-      useWebKit={true}
-      onShouldStartLoadWithRequest={() => true}
+      onShouldStartLoadWithRequest={request => {
+        console.log(request.url);
+        return true;
+      }}
     />
   );
 };
