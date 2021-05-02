@@ -5,7 +5,7 @@ const getJSApi = (): Promise<any> => {
   return new Promise((resolve, reject) => {
     if (typeof window === 'undefined') reject({ message: 'unsupported platform' });
     // @ts-ignore
-    const postcodeSDK = global.daum?.Postcode;
+    const postcodeSDK = window.daum?.Postcode;
     if (postcodeSDK) {
       resolve(postcodeSDK);
       return;
@@ -17,7 +17,7 @@ const getJSApi = (): Promise<any> => {
     const s = document.getElementsByTagName('script')[0];
     s?.parentNode?.insertBefore(jsapi, s);
     // @ts-ignore
-    jsapi.onload = () => resolve(global.daum.Postcode);
+    jsapi.onload = () => resolve(window.daum.Postcode);
     jsapi.onabort = jsapi.onerror = reject;
   });
 };
@@ -27,10 +27,13 @@ const Postcode: React.FC<PostcodeProps> = ({ onSelected, jsOptions, style }) => 
   React.useEffect(() => {
     const loadData = async () => {
       const Postcode = await getJSApi();
-      new Postcode({
-        ...jsOptions,
-        oncomplete: onSelected,
-      }).embed(layer.current);
+      if (Postcode) {
+        // @ts-ignore
+        new window.daum.Postcode({
+          ...jsOptions,
+          oncomplete: onSelected,
+        }).embed(layer.current);
+      }
     };
     loadData().catch(console.warn);
   }, []);
