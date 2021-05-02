@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import WebView from 'react-native-webview';
+import { PostcodeProps } from './types';
 
 const html = `
 <!DOCTYPE html>
@@ -44,7 +45,7 @@ const html = `
 </html>
 `;
 
-const Postcode = (props: any) => {
+const Postcode: React.FC<PostcodeProps> = (props: PostcodeProps) => {
   const { jsOptions, onSelected, onError, ...otherProps } = props;
   const injectedJavaScript = React.useMemo(() => `initOnReady(${JSON.stringify(jsOptions)});void(0);`, [jsOptions]);
 
