@@ -10,10 +10,13 @@ const html = `
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<style> html, body { width: 100%; height: 100%; margin:0px; padding: 0px; background-color: #ececec; } </style>
+	<style> 
+	  * { box-sizing: border-box }
+	  html, body { width: 100%; height: 100%; margin:0px; padding: 0px; background-color: #ececec; } 
+  </style>
 </head>
 <body>
-	<div id="layer" style="width:100%; height: 100%; border:2px solid #f00"></div>
+	<div id="layer" style="width:100%; height: 100%; border:2px solid #f00; overflow-y: auto;"></div>
 	<script type="text/javascript">
     function callback() {
 			var element_layer = document.getElementById('layer');
