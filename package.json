@@ -1,6 +1,6 @@
 {
   "name": "@actbase/react-daum-postcode",
-  "version": "0.0.1",
+  "version": "0.9.0",
   "description": "다음 우편번호찾기 for React, React-Native",
   "main": "lib/index.js",
   "module": "lib/index.js",

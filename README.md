@@ -42,11 +42,37 @@ import Postcode from '@actbase/react-daum-postcode';
 
 const YourView = () => (
   <Postcode
-    style={{ width: 200, height: 200 }}
+    style={{ width: 320, height: 320 }}
     jsOptions={{ animated: true }}
     onSelected={data => alert(JSON.stringify(data))}
   />
 );
+```
+
+### 팝업으로 사용할땐 아래와 같이 사용해도 됩니다.
+
+```jsx
+import Postcode from '@actbase/react-daum-postcode';
+...
+
+const YourView = () => {
+  const [isModal, setModal] = useState(false);
+  return (
+    <>
+      <Modal isVisible={isModal}>
+        <Postcode
+          style={{ width: 320, height: 320 }}
+          jsOptions={{ animated: true }}
+          onSelected={data => {
+            alert(JSON.stringify(data));
+            setModal(false);
+          }}
+        />
+      </Modal>
+      <Button onClick={() => setModal(true)}>주소찾기</Button>
+    </>
+  );
+}
 ```
 
 ---
@@ -79,5 +105,5 @@ width, height값을 별도로 줄 수 있습니다.
 
 # Changes
 
-- 0.9.3
+- 0.9.0
   - 첫 배포
