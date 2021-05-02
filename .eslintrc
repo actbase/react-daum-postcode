@@ -1,0 +1,15 @@
+{
+  "parserOptions": {
+    "ecmaVersion": "2018",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "parser": "babel-eslint",
+  "plugins": ["react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "globals": { "Promise": true, "setTimeout": true, "FormData": true }
+}

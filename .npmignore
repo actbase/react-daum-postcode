@@ -1,0 +1,15 @@
+
+.idea/
+.git*
+src/
+src_modules/
+example/
+docs/
+assets/
+
+tsconfig.json
+.babelrc.js
+.gitignore
+.npmignore
+.prettierrc.js
+yarn.lock
