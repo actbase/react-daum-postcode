@@ -5,7 +5,7 @@ const getJSApi = (): Promise<any> => {
   return new Promise((resolve, reject) => {
     if (typeof window === 'undefined') reject({ message: 'unsupported platform' });
     // @ts-ignore
-    const postcodeSDK = global.daum.Postcode;
+    const postcodeSDK = global.daum?.Postcode;
     if (postcodeSDK) {
       resolve(postcodeSDK);
       return;
