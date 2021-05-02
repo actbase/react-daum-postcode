@@ -66,7 +66,7 @@ const Postcode: React.FC<PostcodeProps> = (props: PostcodeProps) => {
       renderToHardwareTextureAndroid={true}
       useWebKit={true}
       {...otherProps}
-      source={{ html, baseUrl: 'https://github.com' }}
+      source={{ html, baseUrl: 'https://postcode.map.daum.net' }}
       onMessage={onMessage}
       injectedJavaScript={injectedJavaScript}
       onShouldStartLoadWithRequest={request => {
