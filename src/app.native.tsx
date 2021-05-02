@@ -13,6 +13,7 @@ const html = `
 	<style> 
 	  * { box-sizing: border-box }
 	  html, body { width: 100%; height: 100%; margin:0px; padding: 0px; background-color: #ececec; } 
+	  #layer iframe { overflow-y: auto !important; }
   </style>
 </head>
 <body>
@@ -48,7 +49,7 @@ const html = `
 `;
 
 const Postcode: React.FC<PostcodeProps> = (props: PostcodeProps) => {
-  const { jsOptions, onSelected, onError, ...otherProps } = props;
+  const { jsOptions, onSelected, onError, style, ...otherProps } = props;
   const injectedJavaScript = React.useMemo(() => `initOnReady(${JSON.stringify(jsOptions)});void(0);`, [jsOptions]);
 
   const onMessage = React.useCallback(
@@ -70,6 +71,7 @@ const Postcode: React.FC<PostcodeProps> = (props: PostcodeProps) => {
       useWebKit={true}
       {...otherProps}
       source={{ html, baseUrl: 'https://postcode.map.daum.net' }}
+      style={style}
       onMessage={onMessage}
       injectedJavaScript={injectedJavaScript}
       onShouldStartLoadWithRequest={request => {
