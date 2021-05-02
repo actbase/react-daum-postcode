@@ -26,9 +26,9 @@ const html = `
         oncomplete: function(data) {
           window.ReactNativeWebView.postMessage(JSON.stringify(data));
         },
-        onresize: function(size) {
-          document.getElementById('layer').style.height = size.height + 'px';
-        },
+        // onresize: function(size) {
+        //   document.getElementById('layer').style.height = size.height + 'px';
+        // },
         onclose: function(state) {
           callback();
         },
