@@ -35,9 +35,9 @@ const html = `
         width : '100%',
         height: '100%',
       }).embed(element_layer);
-      document.querySelector('#layer iframe').onload = () => {
+      document.querySelector('#layer iframe').addEventListener('load', function () {
          window.scrollTo(0, 0);        
-      }
+      });
     }
 		function initOnReady(options) {
     	window.options = options;
