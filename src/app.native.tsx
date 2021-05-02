@@ -27,6 +27,7 @@ const html = `
         },
         onresize: function(size) {
           document.getElementById('layer').style.height = size.height + 'px';
+          window.scrollTo(0, 0);
         },
         onclose: function(state) {
           callback();
