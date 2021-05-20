@@ -314,6 +314,7 @@ export interface JSOptions {
 }
 
 export interface StyleProps {
+  flex?: number;
   width?: number;
   height?: number;
 }
