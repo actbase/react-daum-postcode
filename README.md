@@ -104,6 +104,8 @@ width, height값을 별도로 줄 수 있습니다.
 프로젝트 문의 혹은 제휴가 필요한 경우 project@actbase.io로 연락주세요.
 
 # Changes
+- 0.9.3
+  - 속성에 flex 추가. Thanks @miraten
 - 0.9.2
   - RN 에서 검색 다음페이지 갈 경우 위로 스크롤 올려줌
   - 지도보기 등 외부 링크를 누를경우 브라우저로 이동
