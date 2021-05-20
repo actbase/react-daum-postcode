@@ -104,6 +104,8 @@ width, height값을 별도로 줄 수 있습니다.
 프로젝트 문의 혹은 제휴가 필요한 경우 project@actbase.io로 연락주세요.
 
 # Changes
+- 0.9.4
+  - 아싸리 그냥 FlexStyle속성을 다 밀어넣어버립시다..
 - 0.9.3
   - 속성에 flex 추가. Thanks @miraten
 - 0.9.2
