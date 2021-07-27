@@ -1,6 +1,6 @@
 {
   "name": "@actbase/react-daum-postcode",
-  "version": "0.9.6",
+  "version": "0.9.8",
   "description": "다음 우편번호찾기 for React, React-Native",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -9,6 +9,7 @@
     "build:src": "rm -rf ./lib && tsc -p src/tsconfig.json && babel lib --out-dir lib",
     "build": "npm run build:src ",
     "prepublish": "npm run build",
+    "localinstall": "npm run build && rm -rf /Users/suhanmoon/Projects/bankmall/bankmall-front/node_modules/@actbase/react-daum-postcode/lib && cp -r ./lib /Users/suhanmoon/Projects/bankmall/bankmall-front/node_modules/@actbase/react-daum-postcode",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

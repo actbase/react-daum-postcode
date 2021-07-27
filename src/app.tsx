@@ -22,7 +22,7 @@ const getJSApi = (): Promise<any> => {
   });
 };
 
-const Postcode: React.FC<PostcodeProps> = ({ onSelected, onClose, jsOptions, style }) => {
+const Postcode: React.FC<PostcodeProps> = ({ onSelected, jsOptions, style }) => {
   const layer = React.useRef<HTMLDivElement>(null);
 
   const loadData = React.useCallback(async () => {
@@ -32,23 +32,19 @@ const Postcode: React.FC<PostcodeProps> = ({ onSelected, onClose, jsOptions, sty
       new window.daum.Postcode({
         ...jsOptions,
         oncomplete: function(data: OnCompleteParams) {
-          console.log('oncomplete');
           onSelected(data);
         },
-        onclose:
-          onClose ||
-          function() {
-            if (layer.current) {
-              loadData();
-            }
-          },
-      }).embed(layer.current);
+        onclose: function() {
+          loadData();
+        },
+      }).embed(layer.current, { autoClose: false });
     }
   }, []);
 
   React.useEffect(() => {
     loadData().catch(console.warn);
   }, [loadData]);
+
   // @ts-ignore
   return <div ref={layer} style={style} />;
 };
