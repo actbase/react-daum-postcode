@@ -49,6 +49,7 @@ const Postcode: React.FC<PostcodeProps> = ({ onSelected, onClose, jsOptions, sty
   React.useEffect(() => {
     loadData().catch(console.warn);
   }, [loadData]);
+  // @ts-ignore
   return <div ref={layer} style={style} />;
 };
 
