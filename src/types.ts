@@ -387,6 +387,8 @@ export interface PostcodeProps {
    */
   onSelected: (data: OnCompleteParams) => void;
 
+  onClose: () => void;
+
   /**
    * onSelected 함수에서 오류 발생 시 실행되는 함수입니다.
    */

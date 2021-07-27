@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PostcodeProps } from './types';
+import { OnCompleteParams, PostcodeProps } from './types';
 
 const getJSApi = (): Promise<any> => {
   return new Promise((resolve, reject) => {
@@ -22,7 +22,7 @@ const getJSApi = (): Promise<any> => {
   });
 };
 
-const Postcode: React.FC<PostcodeProps> = ({ onSelected, jsOptions, style }) => {
+const Postcode: React.FC<PostcodeProps> = ({ onSelected, onClose, jsOptions, style }) => {
   const layer = React.useRef<HTMLDivElement>(null);
 
   const loadData = React.useCallback(async () => {
@@ -31,10 +31,17 @@ const Postcode: React.FC<PostcodeProps> = ({ onSelected, jsOptions, style }) => 
       // @ts-ignore
       new window.daum.Postcode({
         ...jsOptions,
-        oncomplete: onSelected,
-        onclose: function() {
-          loadData();
+        oncomplete: function(data: OnCompleteParams) {
+          console.log('oncomplete');
+          onSelected(data);
         },
+        onclose:
+          onClose ||
+          function() {
+            if (layer.current) {
+              loadData();
+            }
+          },
       }).embed(layer.current);
     }
   }, []);
