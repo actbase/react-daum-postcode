@@ -43,7 +43,7 @@ import Postcode from '@actbase/react-daum-postcode';
 const YourView = () => (
   <Postcode
     style={{ width: 320, height: 320 }}
-    jsOptions={{ animated: true }}
+    jsOptions={{ animation: true }}
     onSelected={data => alert(JSON.stringify(data))}
   />
 );
@@ -62,7 +62,7 @@ const YourView = () => {
       <Modal isVisible={isModal}>
         <Postcode
           style={{ width: 320, height: 320 }}
-          jsOptions={{ animated: true, hideMapBtn: true }}
+          jsOptions={{ animation: true, hideMapBtn: true }}
           onSelected={data => {
             alert(JSON.stringify(data));
             setModal(false);
