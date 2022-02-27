@@ -31,6 +31,7 @@ const Postcode: React.FC<PostcodeProps> = ({ onSelected, jsOptions, style }) => 
       // @ts-ignore
       new window.daum.Postcode({
         ...jsOptions,
+        width: '100%',
         oncomplete: function(data: OnCompleteParams) {
           onSelected(data);
         },

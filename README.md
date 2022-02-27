@@ -104,6 +104,8 @@ width, height값을 별도로 줄 수 있습니다.
 프로젝트 문의 혹은 제휴가 필요한 경우 project@actbase.io로 연락주세요.
 
 # Changes
+- 1.0.4
+  - 웹버전에서 width 500 해제
 - 1.0.2
   - 웹버전에서 onSelected 장애 처리
 - 1.0.1
