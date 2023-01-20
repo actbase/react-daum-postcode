@@ -2,7 +2,7 @@ export interface OnCompleteParams {
   /**
    * 국가기초구역번호. 2015년 8월 1일부터 시행될 새 우편번호.
    */
-  zonecode: number;
+  zonecode: string;
 
   /**
    * 기본 주소
